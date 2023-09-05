@@ -1,0 +1,53 @@
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class ListTransformerTest {
+
+    @Test
+    public void testTransformList_NormalInput() {
+        // Test when the input list contains normal strings.
+        List<String> inputList = Arrays.asList("apple", "banana", "cherry");
+        List<String> expectedList = Arrays.asList("APPLE", "BANANA", "CHERRY");
+        List<String> resultList = ListTransformer.transformList(inputList);
+        assertEquals(expectedList, resultList);
+    }
+
+    @Test
+    public void testTransformList_EmptyInput() {
+        // Test when the input list is empty.
+        List<String> inputList = new ArrayList<>();
+        List<String> resultList = ListTransformer.transformList(inputList);
+        assertTrue(resultList.isEmpty());
+    }
+
+    @Test
+    public void testTransformList_NullInput() {
+        // Test when the input list is null.
+        List<String> inputList = null;
+        List<String> resultList = ListTransformer.transformList(inputList);
+        assertNull(resultList);
+    }
+
+    @Test
+    public void testTransformList_NullElement() {
+        // Test when the input list contains null elements.
+        List<String> inputList = Arrays.asList("apple", null, "cherry");
+        List<String> expectedList = Arrays.asList("APPLE", null, "CHERRY");
+        List<String> resultList = ListTransformer.transformList(inputList);
+        assertEquals(expectedList, resultList);
+    }
+
+    @Test
+    public void testTransformList_EmptyString() {
+        // Test when the input list contains empty strings.
+        List<String> inputList = Arrays.asList("", "banana", "cherry");
+        List<String> expectedList = Arrays.asList("", "BANANA", "CHERRY");
+        List<String> resultList = ListTransformer.transformList(inputList);
+        assertEquals(expectedList, resultList);
+    }
+}
